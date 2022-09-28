@@ -1,6 +1,5 @@
 "use strict";
 // Assignment Code
-//declare var passwordLength
 
 var generateBtn = document.querySelector("#generate");
 
@@ -16,7 +15,7 @@ function writePassword() {
 
 generateBtn.addEventListener("click", writePassword);
 
-// Chris Gibson-add prompt that pops up when generate button is clicked. declare var PasswordLength and declare function generatepassword
+// Chris Gibson-add prompt that pops up when generate button is clicked. then added prompts to ask user what characters they want included in the pasword.
 
 function generatePassword() {
   var passwordLength;
@@ -37,8 +36,16 @@ function generatePassword() {
   var numbers;
   numbers = confirm("Do you want to include any numbers in your password?");
 
-  var numbers;
-  numbers = confirm(
+  var specialCharacters;
+  specialCharacters = confirm(
     "Do you want to include any special characters in your password?"
   );
+  if (
+    specialCharacters == false &&
+    numbers == false &&
+    uppercase == false &&
+    lowercase == false
+  ) {
+    alert("password must contain at least one character type");
+  }
 }
