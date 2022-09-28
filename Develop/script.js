@@ -15,15 +15,21 @@ function writePassword() {
 
 generateBtn.addEventListener("click", writePassword);
 
-// Chris Gibson-add prompt that pops up when generate button is clicked. then added prompts to ask user what characters they want included in the pasword.
+// Chris Gibson-add generatePassword function below that generates prompts  when generate button is clicked. prompts to ask user what characters they want included in the pasword.Also included alerts if the user inputs too short or long of a password length, inputs NaN or doesnt choose at least one character type.
 
 function generatePassword() {
   var passwordLength;
   passwordLength = prompt(
     "How many characters do you want your password to contain?"
   );
+  if (isNaN(passwordLength)) {
+    alert("you must enter a number");
+    generatePassword();
+  }
+
   if (passwordLength < 8 || passwordLength > 128) {
     alert("Password must be between 8 and 128 characters in length");
+    generatePassword();
   }
   var lowercase;
   lowercase = confirm(
@@ -47,5 +53,6 @@ function generatePassword() {
     lowercase == false
   ) {
     alert("password must contain at least one character type");
+    generatePassword();
   }
 }
