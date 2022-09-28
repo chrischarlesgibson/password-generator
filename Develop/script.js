@@ -10,21 +10,25 @@ var specialCharacters;
 
 //declaring empty array to hold user input
 var userInput = [];
-//declaring letter, characters and numbers  that the password can have
+//declaring letter, characters and numbers  that the password can have make each varibale below aan array to
 var lowerAlphabet = "abcdefghijklmnopqrstuvwxyz";
 var upperAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numbersList = "0123456789";
-var specialchar = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+var specialcharactersList = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
 
-//creating function onkeyup to take a key press listener to listen to what number the user inputed for password length and sees if the numberslist array contain that number and if it does then that number is pushed into the user, input array
+///array contain above info. thenput conets on the below array into userinput array using spread operator and then can do password generation
 
-//anything you want to execute on click needs to be in write password function
-document.onkeyup = function (input) {
-  var userKey = input.key;
-  if (numbersList.includes(userKey)) {
-    userInput.push(userKey);
-  }
-};
+var lowerAlphabetArray = lowerAlphabet.split("");
+var upperAlphabetArray = upperAlphabet.split("");
+var numbersListArray = numbersList.split("");
+var specialcharactersListArray = specialcharactersList.split("");
+
+var allArraysCombined = [
+  ...lowerAlphabetArray,
+  ...numbersListArray,
+  ...upperAlphabetArray,
+  ...specialcharactersListArray,
+];
 
 var generateBtn = document.querySelector("#generate");
 
@@ -46,6 +50,7 @@ function generatePassword() {
   passwordLength = prompt(
     "How many characters do you want your password to contain?"
   );
+
   if (isNaN(passwordLength)) {
     alert("you must enter a number");
     generatePassword();
@@ -57,16 +62,15 @@ function generatePassword() {
   }
   lowercase = confirm(
     "Do you want to include any lowercase characters in your password?"
-  ); //need way to handle user input a this stage
+  );
   uppercase = confirm(
     "Do you want to include any uppercase characters in your password?"
   );
-  //need way to handle user input a this stage
+
   numbers = confirm("Do you want to include any numbers in your password?");
-  //need way to handle user input a this stage
+
   specialCharacters = confirm(
     "Do you want to include any special characters in your password?"
-    //need way to handle user input a this stage. crreate if scenario for is lower is true, upper true, spec. char true and numbers true and find
   );
   if (
     specialCharacters == false &&
@@ -79,3 +83,6 @@ function generatePassword() {
   }
   //if statement ot check spec char, lower , upper and number  true and find a way to append to password it will spit out
 }
+Math.floor(Math.random() * userInput.length);
+
+//returns number 0 to  user arrays length -1
