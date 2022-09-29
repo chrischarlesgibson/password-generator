@@ -9,7 +9,8 @@ var numbers;
 var specialCharacters;
 
 //declaring empty array to hold user input
-var userInput = [];
+var passwordArray = [];
+var characterBank = [];
 //declaring letter, characters and numbers  that the password can have make each varibale below aan array to
 var lowerAlphabet = "abcdefghijklmnopqrstuvwxyz";
 var upperAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -23,12 +24,13 @@ var upperAlphabetArray = upperAlphabet.split("");
 var numbersListArray = numbersList.split("");
 var specialcharactersListArray = specialcharactersList.split("");
 
-var allArraysCombined = [
-  ...lowerAlphabetArray,
-  ...numbersListArray,
-  ...upperAlphabetArray,
-  ...specialcharactersListArray,
-];
+//
+// characterBank = [
+//   ...lowerAlphabetArray,
+//   ...numbersListArray,
+//   ...upperAlphabetArray,
+//   ...specialcharactersListArray,
+// ];
 
 var generateBtn = document.querySelector("#generate");
 
@@ -63,15 +65,28 @@ function generatePassword() {
   lowercase = confirm(
     "Do you want to include any lowercase characters in your password?"
   );
+  if (lowercase === true) {
+    characterBank = [...characterBank, ...lowerAlphabetArray];
+  }
   uppercase = confirm(
     "Do you want to include any uppercase characters in your password?"
   );
-
+  if (uppercase === true) {
+    characterBank = [...characterBank, ...upperAlphabetArray];
+  }
   numbers = confirm("Do you want to include any numbers in your password?");
+
+  if (numbers === true) {
+    characterBank = [...characterBank, ...numbersListArray];
+  }
 
   specialCharacters = confirm(
     "Do you want to include any special characters in your password?"
   );
+
+  if (specialCharacters === true) {
+    characterBank = [...characterBank, ...specialcharactersListArray];
+  }
   if (
     specialCharacters == false &&
     numbers == false &&
@@ -81,8 +96,17 @@ function generatePassword() {
     alert("password must contain at least one character type");
     generatePassword();
   }
-  //if statement ot check spec char, lower , upper and number  true and find a way to append to password it will spit out
+  //figure how not getting to for looop
+  for (var i = 0; i < characterBank.Length; i++) {
+    var random =
+      characterBank[Math.floor(Math.random() * characterBank.length)];
+    console.log(random);
+    passwordArray = [...passwordArray, random];
+
+    console.log(passwordArray);
+  }
+
+  return passwordArray;
 }
-Math.floor(Math.random() * userInput.length);
 
 //returns number 0 to  user arrays length -1
