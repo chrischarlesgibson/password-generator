@@ -9,13 +9,13 @@ Random Password Generator is an application that takes user input and generates 
 Here's a snippet of code that shows the asewome for() loop that i made to generate a random password. I just thought that it would be cool to highlight :
 
 ```
-for (var i = 0; i < inputtedPasswordLength; i++) {
+ for (var i = 0; i < inputtedPasswordLength; i++) {
     var random =
       characterBank[Math.floor(Math.random() * characterBank.length)];
 
     passwordArray = [...passwordArray, random];
   }
- return passwordArray;
+  return passwordArray.join("");
 }
 ```
 
@@ -25,13 +25,33 @@ for (var i = 0; i < inputtedPasswordLength; i++) {
 
 Clicking the "generate password" button will prompt the user to start inputting their criteria.
 
-![navigation bar](./Assets/password%20generator%20GIF.gif)
+![how to use GIF](./Assets/password%20generator%20GIF.gif)
 
-## Credits
+## Technologies Used
 
 ---
 
-[W3 schools was used extensively for JavaScript reference guides](https://www.w3schools.com/)
+-JavaScript
+-CSS
+-HTML
+-Screencastify
+-prettier code formatter
+
+## Author
+
+---
+
+**Chris Gibson** -[Gitub](https://github.com/chrischarlesgibson) -[Linkedin](https://www.linkedin.com/in/chris-gibson-415909250/) -[Portfolio](https://chrischarlesgibson.github.io/Chris-Gibson-project-portfolio/)
+
+## Credits and acknowledgments
+
+---
+
+-[Thanks to my brother Alex Gibson for advice when I was stuck on some code](https://github.com/argibson02)
+
+-[Raphael Vogel's markdown cheatsheet](https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md)
+
+-[W3 schools was used extensively for JavaScript reference guides](https://www.w3schools.com/)
 
 ## License
 

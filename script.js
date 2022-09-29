@@ -2,11 +2,12 @@
 // Assignment Code
 
 //storing varibales below outside of function so that I can use the variables later outside of the function
-var passwordLength;
-var lowercase;
-var uppercase;
-var numbers;
-var specialCharacters;
+//removing global variables and putting into functions
+// var passwordLength;
+// var lowercase;
+// var uppercase;
+// var numbers;
+// var specialCharacters;
 
 //declaring empty array to hold user input
 var passwordArray = [];
@@ -41,7 +42,7 @@ generateBtn.addEventListener("click", writePassword);
 
 //add generate Password function below that generates prompts  when generate button is clicked. prompts to ask user what characters they want included in the pasword. Conditionals added that specify if user click 'ok' in confrim window then the character array should be added to the characterbank array.
 function generatePassword() {
-  passwordLength = prompt(
+  var passwordLength = prompt(
     "How many characters do you want your password to contain?"
   );
   //alert if user inputs NaN. called generate password function again if user triggered this alert so that the prompt workflow restarts from beginning.
@@ -57,25 +58,25 @@ function generatePassword() {
   //turning string input of password length into number and putting it into a variable
   var inputtedPasswordLength = parseInt(passwordLength);
 
-  lowercase = confirm(
+  var lowercase = confirm(
     "Do you want to include any lowercase characters in your password?"
   );
   if (lowercase === true) {
     characterBank = [...characterBank, ...lowerAlphabetArray];
   }
-  uppercase = confirm(
+  var uppercase = confirm(
     "Do you want to include any uppercase characters in your password?"
   );
   if (uppercase === true) {
     characterBank = [...characterBank, ...upperAlphabetArray];
   }
-  numbers = confirm("Do you want to include any numbers in your password?");
+  var numbers = confirm("Do you want to include any numbers in your password?");
 
   if (numbers === true) {
     characterBank = [...characterBank, ...numbersListArray];
   }
 
-  specialCharacters = confirm(
+  var specialCharacters = confirm(
     "Do you want to include any special characters in your password?"
   );
 
@@ -94,7 +95,7 @@ function generatePassword() {
     alert("password must contain at least one character type");
     generatePassword();
   }
-  //for loop that loops through character bank and selects a random character each time until it reachs the users inputted password length
+  //for loop that loops through character bank and selects a random character each time until it reachs the users inputted password length.
   for (var i = 0; i < inputtedPasswordLength; i++) {
     var random =
       characterBank[Math.floor(Math.random() * characterBank.length)];
@@ -102,5 +103,5 @@ function generatePassword() {
     passwordArray = [...passwordArray, random];
   }
 
-  return passwordArray;
+  return passwordArray.join("");
 }
