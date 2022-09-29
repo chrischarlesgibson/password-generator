@@ -39,23 +39,22 @@ function writePassword() {
 
 generateBtn.addEventListener("click", writePassword);
 
-// Chris Gibson-add generatePassword function below that generates prompts  when generate button is clicked. prompts to ask user what characters they want included in the pasword.Also included alerts if the user inputs too short or long of a password length, inputs NaN or doesnt choose at least one character type. Also call generate password function again if user triggered an alert so that the prompt workflow restarts from beginning.
-
+//add generate Password function below that generates prompts  when generate button is clicked. prompts to ask user what characters they want included in the pasword. Conditionals added that specify if user click 'ok' in confrim window then the character array should be added to the characterbank array.
 function generatePassword() {
   passwordLength = prompt(
     "How many characters do you want your password to contain?"
   );
-
+  //alert if user inputs NaN. called generate password function again if user triggered this alert so that the prompt workflow restarts from beginning.
   if (isNaN(passwordLength)) {
     alert("you must enter a number");
     generatePassword();
   }
-
+  //alert if user inputs length less than 8 or greater than 128. called generate password function again if user triggered this alert so that the prompt workflow restarts from beginning.
   if (passwordLength < 8 || passwordLength > 128) {
     alert("Password must be between 8 and 128 characters in length");
     generatePassword();
   }
-  //turning string input of password length into number
+  //turning string input of password length into number and putting it into a variable
   var inputtedPasswordLength = parseInt(passwordLength);
 
   lowercase = confirm(
@@ -83,16 +82,19 @@ function generatePassword() {
   if (specialCharacters === true) {
     characterBank = [...characterBank, ...specialcharactersListArray];
   }
+
+  //conditional to check if user clicked ok on at least 1 character type
   if (
     specialCharacters == false &&
     numbers == false &&
     uppercase == false &&
     lowercase == false
   ) {
+    //alert if user didnt select at least on of the character types
     alert("password must contain at least one character type");
     generatePassword();
   }
-  //figure how not getting to for looop
+  //for loop that loops through character bank and selects a random character each time until it reachs the users inputted password length
   for (var i = 0; i < inputtedPasswordLength; i++) {
     var random =
       characterBank[Math.floor(Math.random() * characterBank.length)];
