@@ -11,26 +11,19 @@ var specialCharacters;
 //declaring empty array to hold user input
 var passwordArray = [];
 var characterBank = [];
-//declaring letter, characters and numbers  that the password can have make each varibale below aan array to
+
+//declaring variables of  all the options for characters below
 var lowerAlphabet = "abcdefghijklmnopqrstuvwxyz";
 var upperAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numbersList = "0123456789";
 var specialcharactersList = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
 
-///array contain above info. thenput conets on the below array into userinput array using spread operator and then can do password generation
+///creating new arrays below that contain all the charcaters of the arrays above, but this time each character is spilt up individually.
 
 var lowerAlphabetArray = lowerAlphabet.split("");
 var upperAlphabetArray = upperAlphabet.split("");
 var numbersListArray = numbersList.split("");
 var specialcharactersListArray = specialcharactersList.split("");
-
-//
-// characterBank = [
-//   ...lowerAlphabetArray,
-//   ...numbersListArray,
-//   ...upperAlphabetArray,
-//   ...specialcharactersListArray,
-// ];
 
 var generateBtn = document.querySelector("#generate");
 
@@ -62,6 +55,9 @@ function generatePassword() {
     alert("Password must be between 8 and 128 characters in length");
     generatePassword();
   }
+  //turning string input of password length into number
+  var inputtedPasswordLength = parseInt(passwordLength);
+
   lowercase = confirm(
     "Do you want to include any lowercase characters in your password?"
   );
@@ -97,16 +93,12 @@ function generatePassword() {
     generatePassword();
   }
   //figure how not getting to for looop
-  for (var i = 0; i < characterBank.Length; i++) {
+  for (var i = 0; i < inputtedPasswordLength; i++) {
     var random =
       characterBank[Math.floor(Math.random() * characterBank.length)];
-    console.log(random);
-    passwordArray = [...passwordArray, random];
 
-    console.log(passwordArray);
+    passwordArray = [...passwordArray, random];
   }
 
   return passwordArray;
 }
-
-//returns number 0 to  user arrays length -1
