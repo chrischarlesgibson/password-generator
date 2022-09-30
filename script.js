@@ -30,12 +30,6 @@ function writePassword() {
 var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", writePassword);
 
-//reset placeholder text function so that "undefined" doesnt appear on screen if user inputs null or NaN
-function resetText() {
-  var reset = document.querySelector("#password");
-  reset.textContent("Your Secure Password");
-}
-
 //add generate Password function below that generates prompts  when generate button is clicked. prompts to ask user what characters they want included in the pasword. Conditionals added that specify if user click 'ok' in confrim window then the corresponding character array should be added to the characterbank bank of characters that the password can contain.
 function generatePassword() {
   var passwordLength = prompt(
@@ -44,13 +38,11 @@ function generatePassword() {
   //alert if user inputs NaN. called generate password function again if user triggered this alert so that the prompt workflow restarts from beginning.
   if (isNaN(passwordLength)) {
     alert("you must enter a number");
-    resetText();
     return;
   }
   //alert if user inputs length less than 8 or greater than 128. called generate password function again if user triggered this alert so that the prompt workflow restarts from beginning.
   if (passwordLength < 8 || passwordLength > 128) {
     alert("Password must be between 8 and 128 characters in length");
-    resetText();
     return;
   }
   //turning string input of password length into number and putting it into a variable
