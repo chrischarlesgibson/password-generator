@@ -1,16 +1,8 @@
 "use strict";
 // Assignment Code
 
-//storing varibales below outside of function so that I can use the variables later outside of the function
-//removing global variables and putting into functions
-// var passwordLength;
-// var lowercase;
-// var uppercase;
-// var numbers;
-// var specialCharacters;
-
-//declaring empty array to hold user input
-var passwordArray = [];
+//declaring empty array to password output and the characterbank that holds all the possible characters
+var passwordOutput = [];
 var characterBank = [];
 
 //declaring variables of  all the options for characters below
@@ -19,14 +11,12 @@ var upperAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numbersList = "0123456789";
 var specialcharactersList = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
 
-///creating new arrays below that contain all the charcaters of the arrays above, but this time each character is spilt up individually.
+///creating new arrays below that contain all the charcaters of the arrays above, but this time each character is spilt up individually so that we can pick characters individually later on.
 
 var lowerAlphabetArray = lowerAlphabet.split("");
 var upperAlphabetArray = upperAlphabet.split("");
 var numbersListArray = numbersList.split("");
 var specialcharactersListArray = specialcharactersList.split("");
-
-var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
@@ -37,10 +27,16 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-
+var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", writePassword);
 
-//add generate Password function below that generates prompts  when generate button is clicked. prompts to ask user what characters they want included in the pasword. Conditionals added that specify if user click 'ok' in confrim window then the character array should be added to the characterbank array.
+//reset placeholder text function so that "undefined" doesnt appear on screen if user inputs null or NaN
+function resetText() {
+  var reset = document.querySelector("#password");
+  reset.textContent("Your Secure Password");
+}
+
+//add generate Password function below that generates prompts  when generate button is clicked. prompts to ask user what characters they want included in the pasword. Conditionals added that specify if user click 'ok' in confrim window then the corresponding character array should be added to the characterbank bank of characters that the password can contain.
 function generatePassword() {
   var passwordLength = prompt(
     "How many characters do you want your password to contain?"
@@ -48,12 +44,14 @@ function generatePassword() {
   //alert if user inputs NaN. called generate password function again if user triggered this alert so that the prompt workflow restarts from beginning.
   if (isNaN(passwordLength)) {
     alert("you must enter a number");
-    generatePassword();
+    resetText();
+    return;
   }
   //alert if user inputs length less than 8 or greater than 128. called generate password function again if user triggered this alert so that the prompt workflow restarts from beginning.
   if (passwordLength < 8 || passwordLength > 128) {
     alert("Password must be between 8 and 128 characters in length");
-    generatePassword();
+    resetText();
+    return;
   }
   //turning string input of password length into number and putting it into a variable
   var inputtedPasswordLength = parseInt(passwordLength);
@@ -97,11 +95,12 @@ function generatePassword() {
   }
   //for loop that loops through character bank and selects a random character each time until it reachs the users inputted password length.
   for (var i = 0; i < inputtedPasswordLength; i++) {
-    var random =
+    var randomCharactersSelector =
       characterBank[Math.floor(Math.random() * characterBank.length)];
 
-    passwordArray = [...passwordArray, random];
+    passwordOutput = [...passwordOutput, randomCharactersSelector];
   }
 
-  return passwordArray.join("");
+  //returning result of password output and also taking out commas  between the characters
+  return passwordOutput.join("");
 }
